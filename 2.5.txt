@@ -1,0 +1,45 @@
+1. Explain what is a cluster and what is a hadoop cluster
+cluster
+a group of similar things or people positioned or occurring closely together.
+Hadoop cluster
+
+* Data Storage has grown exponentially in the recent past,
+ but data reading speed has not improved radically
+*A Hadoop cluster is a special type of computational cluster 
+designed specifically for storing and analyzing huge amounts 
+of unstructured data in a distributed computing environment. 
+*Hadoop clusters are known for boosting the speed of data analysis
+ applications. They also are highly scalable.
+* If a cluster's processing power is overwhelmed by growing volumes
+ of data, additional cluster nodes can be added to increase throughput.
+* Hadoop clusters also are highly resistant to failure because each piece 
+of data is copied onto other cluster nodes, which ensures that the data is 
+not lost if one node fails.
+
+2. Explain the components of Hadoop 1.x
+
+NameNode
+• Contains the Hadoop FileSystem Tree and other metadata information about files and
+directories
+• Contains in-memory mapping of which blocks are stored in which datanode
+
+Secondary Namenode
+• Performs house-keeping activities for NameNode, like periodic merging of namespace and
+edits
+• This is not a back up for NameNode
+
+DataNode
+• Stores actual data blocks of file in HDFS on its own local disk
+• Sends signals to NameNode periodically (called as Heartbeat) to verify if it is active
+• Sends block reporting to the NameNode on cluster startup as well as periodically at
+every 10th Heartbeat
+• The DataNode are the workhorse of the system
+• They perform all the block operations, including periodic the Checksum. They receive
+instructions from the NameNode of where to put the blocks and how to put the blocks
+
+JobTracker (Not present in Hadoop 2.x)
+• Controls overall execution of map reduce jobs
+
+TaskTracker (Not present in Hadoop 2.x)
+• Runs individual map-reduce jobs on DataNodes
+• Periodically communicates with the JobTracker to give updates and receive instructions
